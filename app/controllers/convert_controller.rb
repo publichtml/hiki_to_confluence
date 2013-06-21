@@ -5,6 +5,8 @@ class ConvertController < ApplicationController
     # 本当はクラスとかhelperつくるべきなんだけど今回は面倒くさいからコントローラにベタ書き
 
     # 見出し
+    text.gsub!("!!!!!!", "h6. ")
+    text.gsub!("!!!!!", "h5. ")
     text.gsub!("!!!!", "h4. ")
     text.gsub!("!!!", "h3. ")
     text.gsub!("!!", "h2. ")
