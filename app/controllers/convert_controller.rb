@@ -16,6 +16,10 @@ class ConvertController < ApplicationController
     text.gsub!("[[", "[")
     text.gsub!("]]", "]")
 
+    # 箇条書き(*の後に半角スペースが入ってなかったら入れる)
+    text.gsub!(/\*([^\*\s])/){ "* #{$1}"}
+    text.gsub!(/\#([^\#\s])/){ "# #{$1}"}
+
     # 太字
     text.gsub!("'''", "*")
 
