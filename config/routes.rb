@@ -53,4 +53,10 @@ HikiToConfluence::Application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
+
+  root 'convert#index'
+
+  get 'convert/' => 'convert#index'
+  post 'convert/' => 'convert#index'
+
 end
