@@ -41,8 +41,12 @@ end
 # Use Capistrano for deployment
 # gem 'capistrano', group: :development
 
-# Use debugger
-gem 'debugger', group: [:development, :test]
-gem 'pry-rails', group: [:development, :test]
 
+group :development, :test do
+  # Use debugger
+  gem 'debugger', group: [:development, :test]
+  gem 'pry-rails', group: [:development, :test]
+  # Use rspec
+  gem 'rspec-rails', '~> 2.0'
+end
 
