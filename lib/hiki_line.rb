@@ -6,6 +6,8 @@ class HikiLine
   def convert
     text = @text
     text = convert_headings(text)
+    text = convert_links(text)
+    text = convert_lists(text)
   end
 
   private
@@ -18,6 +20,19 @@ class HikiLine
     converted.gsub!("!!!",    "h3. ")
     converted.gsub!("!!",     "h2. ")
     converted.gsub!("!",      "h1. ")
+    converted
+  end
+
+  def convert_links(text)
+    converted = text
+    converted.gsub!("[[", "[")
+    converted.gsub!("]]", "]")
+    converted
+  end
+
+  def convert_lists(text)
+    converted = text
+    converted.gsub!(/\*([^\*\s])/){ "* #{$1}"}
     converted
   end
 end

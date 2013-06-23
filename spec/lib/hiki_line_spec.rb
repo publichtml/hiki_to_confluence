@@ -2,9 +2,9 @@ require "spec_helper"
 
 describe HikiLine do
   describe "#covert" do
-    context "convert headings" do
-      subject{ HikiLine.new(@text) }
+    subject{ HikiLine.new(@text) }
 
+    context "convert headings" do
       it "'!' => 'h1. '" do
         @text = "!heading1 title"
         expect(subject.convert).to eq "h1. heading1 title"
@@ -33,6 +33,35 @@ describe HikiLine do
       it "'!!' => 'h6. '" do
         @text = "!!!!!!heading6 title"
         expect(subject.convert).to eq "h6. heading6 title"
+      end
+    end
+
+    context "convert links" do
+      it "'[[*]]' => '[*]'" do
+        @text = "[[link|http://example.com]]"
+        expect(subject.convert).to eq "[link|http://example.com]"
+      end
+    end
+
+    context "unordered lists" do
+      it "'*' => '* '" do
+        @text = "*list level 1"
+        expect(subject.convert).to eq "* list level 1"
+      end
+
+      it "'**' => '** '" do
+        @text = "**list level 2"
+        expect(subject.convert).to eq "** list level 2"
+      end
+
+      it "'***' => '*** '" do
+        @text = "***list level 3"
+        expect(subject.convert).to eq "*** list level 3"
+      end
+
+      it "'****' => '**** '" do
+        @text = "****list level 4"
+        expect(subject.convert).to eq "**** list level 4"
       end
     end
   end
