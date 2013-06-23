@@ -9,6 +9,7 @@ class HikiLine
     text = convert_links(text)
     text = convert_lists(text)
     text = convert_bold_texts(text)
+    text = convert_line_breaks(text)
   end
 
   private
@@ -40,5 +41,9 @@ class HikiLine
 
   def convert_bold_texts(text)
     text.gsub("'''", "*")
+  end
+
+  def convert_line_breaks(text)
+    text.gsub("{{br}}", "\\")
   end
 end

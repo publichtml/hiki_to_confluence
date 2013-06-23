@@ -93,5 +93,12 @@ describe HikiLine do
         expect(subject.convert).to eq "This is *bold* t*ex*t."
       end
     end
+
+    context "line breaks" do
+      it "'{{br}}' => '\\'" do
+        @text = "The quick brown{{br}} fox jump{{br}}s over the lazy dog."
+        expect(subject.convert).to eq "The quick brown\\ fox jump\\s over the lazy dog."
+      end
+    end
   end
 end
