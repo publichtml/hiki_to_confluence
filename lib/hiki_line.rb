@@ -13,6 +13,18 @@ class HikiLine
     text = convert_tables(text)
   end
 
+  def indented?
+    !!(@text =~ /^ /)
+  end
+
+  def blank?
+    @text.rstrip.blank?
+  end
+
+  def present?
+    !blank?(@text)
+  end
+
   private
 
   def convert_headings(text)
