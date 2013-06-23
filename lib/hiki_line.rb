@@ -10,6 +10,7 @@ class HikiLine
     text = convert_lists(text)
     text = convert_bold_texts(text)
     text = convert_line_breaks(text)
+    text = convert_tables(text)
   end
 
   private
@@ -45,5 +46,9 @@ class HikiLine
 
   def convert_line_breaks(text)
     text.gsub("{{br}}", "\\")
+  end
+
+  def convert_tables(text)
+    text.gsub("||", "|")
   end
 end

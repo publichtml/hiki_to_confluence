@@ -100,5 +100,12 @@ describe HikiLine do
         expect(subject.convert).to eq "The quick brown\\ fox jump\\s over the lazy dog."
       end
     end
+
+    context "tables" do
+      it "'||td1||td 2||  td 3  || ' => '|td1|td 2|  td 3  | '" do
+        @text = "||td1||td 2||  td 3  || "
+        expect(subject.convert).to eq "|td1|td 2|  td 3  | "
+      end
+    end
   end
 end
