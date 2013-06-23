@@ -86,5 +86,12 @@ describe HikiLine do
         expect(subject.convert).to eq "#### list level 4"
       end
     end
+
+    context "bold text" do
+      it "\"'''\" => \"*\"" do
+        @text = "This is '''bold''' t'''ex'''t."
+        expect(subject.convert).to eq "This is *bold* t*ex*t."
+      end
+    end
   end
 end

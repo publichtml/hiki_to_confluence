@@ -8,6 +8,7 @@ class HikiLine
     text = convert_headings(text)
     text = convert_links(text)
     text = convert_lists(text)
+    text = convert_bold_texts(text)
   end
 
   private
@@ -35,5 +36,9 @@ class HikiLine
     converted.gsub!(/\*([^\*\s])/){ "* #{$1}"}
     converted.gsub!(/\#([^\#\s])/){ "# #{$1}"}
     converted
+  end
+
+  def convert_bold_texts(text)
+    text.gsub("'''", "*")
   end
 end
