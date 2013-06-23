@@ -33,6 +33,7 @@ class HikiLine
   def convert_lists(text)
     converted = text
     converted.gsub!(/\*([^\*\s])/){ "* #{$1}"}
+    converted.gsub!(/\#([^\#\s])/){ "# #{$1}"}
     converted
   end
 end
