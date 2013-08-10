@@ -4,8 +4,8 @@ describe HikiConverter do
   describe "#covert" do
     subject{ HikiConverter.new(@text) }
 
-    context "convert headings" do
-      it "'!' => 'h1. '" do
+    context "converts" do
+      it "headings, links, lists, bold texts, line breaks, tables" do
         @text = <<EOS
 !headings1
 [[link|http://example.com]]
