@@ -108,4 +108,54 @@ describe HikiLine do
       end
     end
   end
+
+  describe "#include_quote_markup?" do
+    subject{ HikiLine.new(@text) }
+
+    context "about '<<<'," do
+      it "return true if '<<<'" do
+        @text = "<<<"
+        expect(subject.include_quote_markup?).to be_true
+      end
+
+      it "return true if '<<<   '" do
+        @text = "<<<   "
+        expect(subject.include_quote_markup?).to be_true
+      end
+
+      it "return false if '<<< test'" do
+        @text = "<<< test"
+        expect(subject.include_quote_markup?).to be_false
+      end
+    end
+
+    context "about '>>>'," do
+      it "return true if '>>>'" do
+        @text = ">>>"
+        expect(subject.include_quote_markup?).to be_true
+      end
+
+      it "return true if '>>>   '" do
+        @text = ">>>   "
+        expect(subject.include_quote_markup?).to be_true
+      end
+
+      it "return false if '>>> test'" do
+        @text = ">>> test"
+        expect(subject.include_quote_markup?).to be_false
+      end
+    end
+
+    context "about ' '," do
+      it "return true if begins with ' '" do
+        @text = " test"
+        expect(subject.include_quote_markup?).to be_true
+      end
+
+      it "return false if not begins with ' '" do
+        @text = "test"
+        expect(subject.include_quote_markup?).to be_false
+      end
+    end
+  end
 end

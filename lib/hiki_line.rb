@@ -25,6 +25,10 @@ class HikiLine
     !blank?(@text)
   end
 
+  def include_quote_markup?
+    indented? || !!(@text =~ /^(<<<|>>>)\s*$/)
+  end
+
   private
 
   def convert_headings(text)
