@@ -13,6 +13,11 @@ class HikiLine
     text = convert_tables(text)
   end
 
+  def strip_quote_markups()
+    return "" if @text =~ /^(<<<|>>>)\s*$/
+    @text
+  end
+
   def indented?
     !!(@text =~ /^ /)
   end

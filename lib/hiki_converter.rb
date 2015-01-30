@@ -1,4 +1,6 @@
 class HikiConverter
+  CONFLUENCE_QUOTE_MARKUP = "{code}"
+
   def initialize(text)
     raw_lines = text.split(/\n/)
     @lines = raw_lines.map{ |line| HikiLine.new(line) }
@@ -7,7 +9,11 @@ class HikiConverter
   def convert
     converted_texts = []
     @lines.each_with_index do |line, cnt|
-      converted_texts << line.convert
+      if line.include_quote_markup?
+        converted_texts << CONFLUENCE_QUOTE_MARKUP
+      else
+        converted_texts << line.convert
+      end        
     end
 
     converted_texts.join("\n") + "\n"

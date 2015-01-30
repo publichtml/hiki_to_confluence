@@ -158,4 +158,54 @@ describe HikiLine do
       end
     end
   end
+
+  describe "#strip_quote_markups" do
+    subject{ HikiLine.new(@text) }
+
+    context "about '<<<'," do
+      it "return '' for '<<<'" do
+        @text = "<<<"
+        expect(subject.strip_quote_markups).to eq ""
+      end
+
+      it "return '' for '<<<   '" do
+        @text = "<<<   "
+        expect(subject.strip_quote_markups).to eq ""
+      end
+
+      it "return '<<< test' for '<<< test'" do
+        @text = "<<< test"
+        expect(subject.strip_quote_markups).to eq "<<< test"
+      end
+    end
+
+    context "about '>>>'," do
+      it "return '' for '>>>'" do
+        @text = ">>>"
+        expect(subject.strip_quote_markups).to eq ""
+      end
+
+      it "return '' for '>>>   '" do
+        @text = ">>>   "
+        expect(subject.strip_quote_markups).to eq ""
+      end
+
+      it "return '>>> test' for '>>> test'" do
+        @text = ">>> test"
+        expect(subject.strip_quote_markups).to eq ">>> test"
+      end
+    end
+
+    context "about ' '," do
+      it "return 'test' for  ' test'" do
+        @text = " test"
+        expect(subject.strip_quote_markups).to eq "test"
+      end
+
+      it "return ' test' for  '  test'" do
+        @text = "  test"
+        expect(subject.strip_quote_markups).to eq " test"
+      end
+    end
+  end
 end

@@ -50,6 +50,38 @@ h5. headings5
 h6. headings6
 EOS
       end
+
+      it "quotes by '<<<' and '>>>' without nesting" do
+        @text = <<EOS
+<<<
+quoted line1
+quoted line2
+>>>
+EOS
+
+        expect(subject.convert).to eq <<EOS
+{code}
+quoted line1
+quoted line2
+{code}
+EOS
+      end
+
+      it "quotes by ' ' without nesting" do
+        pending("This will be cared after HikiLine#sprit_quote_markups")
+        @text = <<EOS
+ quoted line1
+  quoted line2
+>>>
+EOS
+
+        expect(subject.convert).to eq <<EOS
+{code}
+quoted line1
+ quoted line2
+{code}
+EOS
+      end
     end
   end
 end

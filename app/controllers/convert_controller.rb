@@ -5,29 +5,29 @@ class ConvertController < ApplicationController
     # 本当はクラスとかhelperつくるべきなんだけど今回は面倒くさいからコントローラにベタ書き
 
     # 見出し
-    text.gsub!("!!!!!!", "h6. ")
-    text.gsub!("!!!!!", "h5. ")
-    text.gsub!("!!!!", "h4. ")
-    text.gsub!("!!!", "h3. ")
-    text.gsub!("!!", "h2. ")
-    text.gsub!("!", "h1. ")
+    # text.gsub!("!!!!!!", "h6. ")
+    # text.gsub!("!!!!!", "h5. ")
+    # text.gsub!("!!!!", "h4. ")
+    # text.gsub!("!!!", "h3. ")
+    # text.gsub!("!!", "h2. ")
+    # text.gsub!("!", "h1. ")
 
     # リンク
-    text.gsub!("[[", "[")
-    text.gsub!("]]", "]")
+    # text.gsub!("[[", "[")
+    # text.gsub!("]]", "]")
 
     # 箇条書き(*の後に半角スペースが入ってなかったら入れる)
-    text.gsub!(/\*([^\*\s])/){ "* #{$1}"}
-    text.gsub!(/\#([^\#\s])/){ "# #{$1}"}
+    # text.gsub!(/\*([^\*\s])/){ "* #{$1}"}
+    #text.gsub!(/\#([^\#\s])/){ "# #{$1}"}
 
     # 太字
-    text.gsub!("'''", "*")
+    # text.gsub!("'''", "*")
 
     # 改行
-    text.gsub!("{{br}}", "\\")
+    # text.gsub!("{{br}}", "\\")
 
     # テーブル
-    text.gsub!("||", "|")
+    # text.gsub!("||", "|")
 
     # >>> による引用
     text.gsub!("<<<", "{noformat}")
